@@ -8,6 +8,10 @@ var schema = buildSchema(`
   type Query {
     hello: String
     age: Int
+    weight: Float
+    isOver18: Boolean
+    hobbies: [String]
+    quoteOfTheDay: String
   }
 `);
 
@@ -18,6 +22,18 @@ var root = {
   },
   age: () => {
     return 23;
+  },
+  weight: () => {
+    return 70.55;
+  },
+  isOver18: () => {
+    return true;
+  },
+  hobbies: () => {
+    return ["running", "swimming", "dancing"];
+  },
+  quoteOfTheDay: () => {
+    return Math.random() < 0.5 ? "Take it easy" : "Salvation lies within";
   },
 };
 
@@ -41,4 +57,4 @@ app.get("/", (_req, res) => {
 // Start the server at port
 app.listen(4000);
 console.log(`Running a GraphQL API server at http://localhost:4000/graphql
-Running a GraphQL API server at http://localhost:4000/graphql?query={hello,age}`);
+Running a GraphQL API server at http://localhost:4000/graphql?query={hello,age,weight,isOver18,hobbies,quoteOfTheDay}`);
